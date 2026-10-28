@@ -19,7 +19,6 @@ https://1-projeto-alura-calculadora-python.vercel.app/
 Este projeto foi concebido e desenvolvido durante a **Imersão de Engenharia de Software com IA da Alura**.
 
 O objetivo da imersão foi vivenciar na prática o fluxo de trabalho da nova geração de engenharia de software: utilizar **Inteligência Artificial como parceira de desenvolvimento (Pair Programming)** para acelerar a arquitetura, refatoração de código, tratamento de exceções e criação de interfaces modernas.
----
 
 ## 🛠️ Processo de Criação e Metodologia:
 1. **Engenharia de Prompt & Requisitos:** Definição clara dos requisitos de código limpo (funções separadas para operações, menu com loop `while`, validação com `try/except` para não quebrar com letras e proteção contra divisão por zero).
