@@ -13,6 +13,7 @@ https://1-projeto-alura-calculadora-python.vercel.app/
 
 <img width="1258" height="970" alt="Captura de tela 2026-10-28 183731" src="https://github.com/user-attachments/assets/b367a91f-087e-4915-afc2-f9731719f655" />
 ---
+
 ## 🎓 Como Foi Feito & Imersão Alura
 
 Este projeto foi concebido e desenvolvido durante a **Imersão de Engenharia de Software com IA da Alura**.
@@ -37,7 +38,6 @@ O objetivo da imersão foi vivenciar na prática o fluxo de trabalho da nova ger
 - 🧠 **Anatomia do Código & Lógica de Decisão**: Visualizador passo a passo de como o Python toma decisões com `if / elif` e como as 4 funções (`somar`, `subtrair`, `multiplicar`, `dividir`) processam os dados.
 - 📜 **Histórico de Cálculos Recentes**: Armazenamento cronológico de todas as operações concluídas na sessão.
 - 🛡️ **Tratamento de Exceções**: Proteção nativa contra divisão por zero (`ZeroDivisionError`) e digitação de letras em vez de números.
----
 
 ## 📁 Estrutura Organizada dos Arquivos
 
