@@ -26,3 +26,16 @@
 │   ├── components/              # Componentes visuais separados
 │   └── App.tsx                  # Orquestrador da aplicação
 └── README.md                    # Documentação do projeto
+---
+
+## 📄 Licença & Liberdade de Uso
+
+Este projeto está sob a **Licença MIT** — um padrão aberto e livre!
+
+🎉 **Sinta-se à vontade para:**
+- ✏️ **Mexer e Modificar:** Mude as cores, adicione botões e crie novas funções.
+- 🎓 **Estudar e Praticar:** Use o código para seus próprios estudos de Python.
+- 🤝 **Compartilhar:** Envie para amigos e colegas que também estão aprendendo.
+- 💡 **Contribuir:** Se tiver alguma ideia legal, fique livre para sugerir melhorias!
+
+Feito para fins educativos e para quem está começando na programação! 🚀
