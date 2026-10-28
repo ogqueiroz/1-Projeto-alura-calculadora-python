@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculadora em Python - Interativa & Educativa</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Plus Jakarta Sans', sans-serif; }
+    code, pre, .font-mono { font-family: 'Fira Code', monospace; }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col selection:bg-amber-400 selection:text-slate-950">
+
+  <!-- Header -->
+  <header class="border-b border-slate-800 bg-slate-900/80 backdrop-blur-md sticky top-0 z-50">
+    <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-amber-400 to-amber-600 flex items-center justify-center text-slate-950 font-black text-xl shadow-lg shadow-amber-500/20">
+          🐍
+        </div>
+        <div>
+          <h1 class="font-extrabold text-base sm:text-lg text-white flex items-center gap-2">
+            Calculadora em Python
+            <span class="text-[11px] font-mono px-2 py-0.5 rounded-full bg-amber-500/10 text-amber-400 border border-amber-500/30">Ao Vivo</span>
+          </h1>
+          <p class="text-xs text-slate-400">Visor Digital, Botões Reais & Anatomia do Código</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Navigation Tabs -->
+    <div class="max-w-6xl mx-auto px-4 border-t border-slate-800/60">
+      <nav class="flex items-center space-x-2 overflow-x-auto py-1 text-xs font-semibold">
+        <button onclick="setTab('calc')" id="tab-calc" class="tab-btn px-4 py-2.5 rounded-lg text-amber-400 border-b-2 border-amber-400 bg-slate-800 flex items-center gap-2">
+          📱 1. Calculadora Real (Visor & Botões)
+        </button>
+        <button onclick="setTab('anatomy')" id="tab-anatomy" class="tab-btn px-4 py-2.5 rounded-lg text-slate-400 hover:text-slate-200 flex items-center gap-2">
+          🧠 2. Anatomia do Código (Decisão if/elif)
+        </button>
+        <button onclick="setTab('terminal')" id="tab-terminal" class="tab-btn px-4 py-2.5 rounded-lg text-slate-400 hover:text-slate-200 flex items-center gap-2">
+          ⌨️ 3. Modo Terminal de Texto
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="max-w-6xl mx-auto w-full px-4 py-6 flex-1 space-y-6">
+
+    <!-- TAB 1: CALCULADORA REAL -->
+    <div id="view-calc" class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+      <!-- Calculadora -->
+      <div class="lg:col-span-7 bg-slate-900 border border-slate-800 rounded-3xl p-6 shadow-2xl">
+        <div class="flex items-center justify-between mb-4 pb-2 border-b border-slate-800">
+          <div class="flex items-center gap-2">
+            <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
+            <span class="font-bold text-xs text-slate-200 uppercase tracking-wider">Calculadora Digital Python</span>
+          </div>
+          <button onclick="calcClear()" class="text-xs text-slate-400 hover:text-slate-200 bg-slate-800 px-2.5 py-1 rounded-lg">Reset (C)</button>
+        </div>
+
+        <!-- Visor -->
+        <div class="bg-slate-950 rounded-2xl p-4 border-2 border-slate-800 shadow-inner mb-4">
+          <div id="calc-preview" class="text-xs font-mono text-amber-400 text-right truncate h-4">Python 3.12 Engine</div>
+          <div id="calc-display" class="font-mono font-extrabold text-4xl text-amber-300 text-right py-1">0</div>
+        </div>
+
+        <!-- Teclado de Botões -->
+        <div class="grid grid-cols-4 gap-2.5 select-none font-bold text-base">
+          <button onclick="calcClear()" class="py-3.5 rounded-2xl bg-red-950/40 border border-red-800/40 text-red-300 active:scale-95">C</button>
+          <button onclick="calcBackspace()" class="py-3.5 rounded-2xl bg-slate-800 border border-slate-700/60 text-slate-300 active:scale-95">⌫</button>
+          <button onclick="calcSqrt()" class="py-3.5 rounded-2xl bg-slate-800 border border-slate-700/60 text-cyan-400 font-mono active:scale-95">√x</button>
+          <button onclick="calcOp('÷')" class="py-3.5 rounded-2xl bg-amber-500/10 border border-amber-500/30 text-amber-400 active:scale-95 text-lg">÷</button>
+
+          <button onclick="calcNum('7')" class="py-3.5 rounded-2xl bg-slate-800/50 border border-slate-700/50 text-white active:scale-95">7</button>
+          <button onclick="calcNum('8')" class="py-3.5 rounded-2xl bg-slate-800/50 border border-slate-700/50 text-white active:scale-95">8</button>
+          <button onclick="calcNum('9')" class="py-3.5 rounded-2xl bg-slate-800/50 border border-slate-700/50 text-white active:scale-95">9</button>
+          <button onclick="calcOp('×')" class="py-3.5 rounded-2xl bg-amber-500/10 border border-amber-500/30 text-amber-400 active:scale-95 text-lg">×</button>
+
+          <button onclick="calcNum('4')" class="py-3.5 rounded-2xl bg-slate-800/50 border border-slate-700/50 text-white active:scale-95">4</button>
+          <button onclick="calcNum('5')" class="py-3.5 rounded-2xl bg-slate-800/50 border border-slate-700/50 text-white active:scale-95">5</button>
+          <button onclick="calcNum('6')" class="py-3.5 rounded-2xl bg-slate-800/50 border border-slate-700/50 text-white active:scale-95">6</button>
+          <button onclick="calcOp('-')" class="py-3.5 rounded-2xl bg-amber-500/10 border border-amber-500/30 text-amber-400 active:scale-95 text-lg">-</button>
+
+          <button onclick="calcNum('1')" class="py-3.5 rounded-2xl bg-slate-800/50 border border-slate-700/50 text-white active:scale-95">1</button>
+          <button onclick="calcNum('2')" class="py-3.5 rounded-2xl bg-slate-800/50 border border-slate-700/50 text-white active:scale-95">2</button>
+          <button onclick="calcNum('3')" class="py-3.5 rounded-2xl bg-slate-800/50 border border-slate-700/50 text-white active:scale-95">3</button>
+          <button onclick="calcOp('+')" class="py-3.5 rounded-2xl bg-amber-500/10 border border-amber-500/30 text-amber-400 active:scale-95 text-lg">+</button>
+
+          <button onclick="calcSign()" class="py-3.5 rounded-2xl bg-slate-800/50 border border-slate-700/50 text-slate-300 active:scale-95 text-sm">±</button>
+          <button onclick="calcNum('0')" class="py-3.5 rounded-2xl bg-slate-800/50 border border-slate-700/50 text-white active:scale-95">0</button>
+          <button onclick="calcDot()" class="py-3.5 rounded-2xl bg-slate-800/50 border border-slate-700/50 text-white active:scale-95">.</button>
+          <button onclick="calcEqual()" class="py-3.5 rounded-2xl bg-gradient-to-r from-amber-500 to-amber-600 text-slate-950 font-black text-xl active:scale-95 shadow-lg shadow-amber-500/30 border border-amber-400">=</button>
+        </div>
+      </div>
+
+      <!-- Histórico e Raio-X Python -->
+      <div class="lg:col-span-5 space-y-4">
+        <div class="bg-slate-900 border border-slate-800 rounded-3xl p-5 shadow-xl space-y-3">
+          <div class="flex items-center justify-between border-b border-slate-800 pb-2">
+            <h3 class="font-bold text-sm text-slate-200">📜 Histórico Recente</h3>
+            <button onclick="clearHistory()" class="text-xs text-red-400 hover:text-red-300">Limpar</button>
+          </div>
+          <div id="history-list" class="max-h-[180px] overflow-y-auto space-y-1.5 font-mono text-xs text-slate-300 pr-1">
+            <div class="p-2 rounded-xl bg-slate-950/70 border border-slate-800/80 flex justify-between">
+              <span>15 + 25</span>
+              <span class="text-emerald-400 font-bold">= 40</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-slate-900 border border-slate-800 rounded-3xl p-5 shadow-xl space-y-2 text-xs">
+          <h4 class="font-bold text-xs text-slate-200 flex items-center gap-2">
+            ⚙️ O Python nos Bastidores:
+          </h4>
+          <div class="p-2.5 rounded-xl bg-slate-950 border border-slate-800 font-mono text-[11px] text-cyan-300" id="py-decision">
+            opcao == "1" -> chamou somar(a, b)
+          </div>
+          <div class="p-2.5 rounded-xl bg-slate-950 border border-slate-800 font-mono text-[11px] text-emerald-300" id="py-code">
+            def somar(a, b): return a + b
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 2: ANATOMIA DO CÓDIGO -->
+    <div id="view-anatomy" class="hidden space-y-6">
+      <div class="bg-slate-900 border border-slate-800 rounded-3xl p-6 shadow-xl space-y-4">
+        <h2 class="text-lg font-bold text-slate-100 flex items-center gap-2">
+          🧠 Como o Python Decide Qual Operação Usar?
+        </h2>
+        <p class="text-xs text-slate-400">
+          Clique nas opções abaixo para ver a escadinha do <code class="text-cyan-400">if / elif</code> funcionando:
+        </p>
+
+        <div class="grid grid-cols-2 sm:grid-cols-5 gap-2">
+          <button onclick="setAnatomy('1')" class="p-3 rounded-xl bg-slate-950 border border-slate-800 hover:border-amber-500 text-left text-xs font-mono">
+            <span class="text-amber-400 font-bold block">opcao = "1"</span>
+            <span class="text-slate-400 text-[11px]">Somar (+)</span>
+          </button>
+          <button onclick="setAnatomy('2')" class="p-3 rounded-xl bg-slate-950 border border-slate-800 hover:border-amber-500 text-left text-xs font-mono">
+            <span class="text-amber-400 font-bold block">opcao = "2"</span>
+            <span class="text-slate-400 text-[11px]">Subtrair (-)</span>
+          </button>
+          <button onclick="setAnatomy('3')" class="p-3 rounded-xl bg-slate-950 border border-slate-800 hover:border-amber-500 text-left text-xs font-mono">
+            <span class="text-amber-400 font-bold block">opcao = "3"</span>
+            <span class="text-slate-400 text-[11px]">Multiplicar (*)</span>
+          </button>
+          <button onclick="setAnatomy('4')" class="p-3 rounded-xl bg-slate-950 border border-slate-800 hover:border-amber-500 text-left text-xs font-mono">
+            <span class="text-amber-400 font-bold block">opcao = "4"</span>
+            <span class="text-slate-400 text-[11px]">Dividir (/)</span>
+          </button>
+          <button onclick="setAnatomy('9')" class="p-3 rounded-xl bg-slate-950 border border-slate-800 hover:border-red-500 text-left text-xs font-mono">
+            <span class="text-red-400 font-bold block">opcao = "9"</span>
+            <span class="text-slate-400 text-[11px]">Inválida ⚠️</span>
+          </button>
+        </div>
+
+        <div class="bg-slate-950 rounded-2xl p-4 border border-slate-800 font-mono text-xs space-y-1.5">
+          <div id="anat-line-val" class="p-2 rounded-lg text-slate-500">
+            <code>if opcao not in ("1", "2", "3", "4"): print("Opção inválida!"); continue</code>
+          </div>
+          <div id="anat-line-1" class="p-2 rounded-lg bg-emerald-950/60 border border-emerald-500 text-emerald-200 font-bold">
+            <code>if opcao == "1": resultado = somar(num1, num2); simbolo = "+"</code>
+          </div>
+          <div id="anat-line-2" class="p-2 rounded-lg text-slate-500">
+            <code>elif opcao == "2": resultado = subtrair(num1, num2); simbolo = "-"</code>
+          </div>
+          <div id="anat-line-3" class="p-2 rounded-lg text-slate-500">
+            <code>elif opcao == "3": resultado = multiplicar(num1, num2); simbolo = "*"</code>
+          </div>
+          <div id="anat-line-4" class="p-2 rounded-lg text-slate-500">
+            <code>elif opcao == "4": resultado = dividir(num1, num2); simbolo = "/"</code>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 3: MODO TERMINAL DE TEXTO -->
+    <div id="view-terminal" class="hidden space-y-4">
+      <div class="bg-slate-900 border border-slate-800 rounded-3xl p-6 shadow-xl space-y-3">
+        <h3 class="font-bold text-sm text-slate-200">⌨️ Terminal Python Interativo</h3>
+        <p class="text-xs text-slate-400">Experimente como a calculadora roda no terminal clássico:</p>
+        <div class="bg-slate-950 rounded-2xl p-4 border border-slate-800 font-mono text-xs space-y-1.5 text-slate-300">
+          <div class="text-cyan-400 font-bold">========================================<br>         CALCULADORA EM PYTHON<br>========================================</div>
+          <div>1 - Somar (+) | 2 - Subtrair (-) | 3 - Multiplicar (*) | 4 - Dividir (/) | 0 - Sair</div>
+          <div class="text-amber-300 pt-2">Escolha uma opção (0 a 4): <span class="bg-amber-400 text-slate-950 px-1 font-bold">1</span></div>
+          <div class="text-slate-400">Digite o primeiro número: 15.5</div>
+          <div class="text-slate-400">Digite o segundo número: 4.5</div>
+          <div class="text-emerald-400 font-bold pt-1">✓ Resultado: 15.5 + 4.5 = 20.0</div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <footer class="border-t border-slate-900 bg-slate-950 py-4 text-center text-xs text-slate-500">
+    Calculadora Python Educativa • Feito com carinho para iniciantes
+  </footer>
+
+  <script>
+    function setTab(tab) {
+      document.getElementById('view-calc').classList.toggle('hidden', tab !== 'calc');
+      document.getElementById('view-anatomy').classList.toggle('hidden', tab !== 'anatomy');
+      document.getElementById('view-terminal').classList.toggle('hidden', tab !== 'terminal');
+
+      const tabs = ['calc', 'anatomy', 'terminal'];
+      tabs.forEach(t => {
+        const btn = document.getElementById('tab-' + t);
+        if (t === tab) {
+          btn.className = "tab-btn px-4 py-2.5 rounded-lg text-amber-400 border-b-2 border-amber-400 bg-slate-800 flex items-center gap-2";
+        } else {
+          btn.className = "tab-btn px-4 py-2.5 rounded-lg text-slate-400 hover:text-slate-200 flex items-center gap-2";
+        }
+      });
+    }
+
+    let display = '0', stored = null, operator = null, newNum = true;
+
+    function calcNum(digit) {
+      if (newNum) { display = digit; newNum = false; }
+      else { display = display === '0' ? digit : display + digit; }
+      updateDisplay();
+    }
+
+    function calcDot() {
+      if (newNum) { display = '0.'; newNum = false; }
+      else if (!display.includes('.')) { display += '.'; }
+      updateDisplay();
+    }
+
+    function calcOp(op) {
+      stored = parseFloat(display);
+      operator = op;
+      newNum = true;
+      document.getElementById('calc-preview').innerText = stored + ' ' + op;
+    }
+
+    function calcEqual() {
+      if (stored === null || operator === null) return;
+      const b = parseFloat(display);
+      let res = 0, pyDec = '', pyFunc = '';
+
+      if (operator === '+') { res = stored + b; pyDec = 'opcao == "1" -> chamou somar(' + stored + ', ' + b + ')'; pyFunc = 'def somar(a, b): return ' + stored + ' + ' + b; }
+      else if (operator === '-') { res = stored - b; pyDec = 'opcao == "2" -> chamou subtrair(' + stored + ', ' + b + ')'; pyFunc = 'def subtrair(a, b): return ' + stored + ' - ' + b; }
+      else if (operator === '×') { res = stored * b; pyDec = 'opcao == "3" -> chamou multiplicar(' + stored + ', ' + b + ')'; pyFunc = 'def multiplicar(a, b): return ' + stored + ' * ' + b; }
+      else if (operator === '÷') {
+        if (b === 0) {
+          display = 'Erro: div por 0';
+          updateDisplay();
+          document.getElementById('py-decision').innerText = '⚠️ ZeroDivisionError capturado!';
+          document.getElementById('py-code').innerText = 'raise ZeroDivisionError("Divisão por zero")';
+          stored = null; operator = null; newNum = true;
+          return;
+        }
+        res = stored / b;
+        pyDec = 'opcao == "4" -> chamou dividir(' + stored + ', ' + b + ')';
+        pyFunc = 'def dividir(a, b): return ' + stored + ' / ' + b;
+      }
+
+      const resStr = Number.isInteger(res) ? res.toString() : parseFloat(res.toFixed(4)).toString();
+      document.getElementById('calc-preview').innerText = stored + ' ' + operator + ' ' + b + ' =';
+      
+      const histItem = document.createElement('div');
+      histItem.className = 'p-2 rounded-xl bg-slate-950/70 border border-slate-800/80 flex justify-between';
+      histItem.innerHTML = '<span>' + stored + ' ' + operator + ' ' + b + '</span><span class="text-emerald-400 font-bold">= ' + resStr + '</span>';
+      document.getElementById('history-list').prepend(histItem);
+
+      display = resStr; stored = null; operator = null; newNum = true;
+      updateDisplay();
+      document.getElementById('py-decision').innerText = pyDec;
+      document.getElementById('py-code').innerText = pyFunc;
+    }
+
+    function calcClear() {
+      display = '0'; stored = null; operator = null; newNum = true;
+      document.getElementById('calc-preview').innerText = 'Pronto para calcular';
+      updateDisplay();
+    }
+
+    function calcSqrt() {
+      const v = parseFloat(display);
+      if (v < 0) { display = 'Erro'; updateDisplay(); return; }
+      const res = Math.sqrt(v);
+      display = Number.isInteger(res) ? res.toString() : parseFloat(res.toFixed(4)).toString();
+      newNum = true;
+      document.getElementById('calc-preview').innerText = '√(' + v + ') =';
+      updateDisplay();
+    }
+
+    function calcSign() {
+      display = (parseFloat(display) * -1).toString();
+      updateDisplay();
+    }
+
+    function calcBackspace() {
+      if (display.length > 1) display = display.slice(0, -1);
+      else { display = '0'; newNum = true; }
+      updateDisplay();
+    }
+
+    function clearHistory() {
+      document.getElementById('history-list').innerHTML = '<div class="text-slate-500 text-center py-4">Histórico limpo.</div>';
+    }
+
+    function updateDisplay() {
+      document.getElementById('calc-display').innerText = display;
+    }
+
+    function setAnatomy(op) {
+      ['val', '1', '2', '3', '4'].forEach(l => {
+        document.getElementById('anat-line-' + l).className = 'p-2 rounded-lg text-slate-500';
+      });
+      if (op === '9') {
+        document.getElementById('anat-line-val').className = 'p-2 rounded-lg bg-red-950/60 border border-red-500 text-red-200 font-bold';
+      } else {
+        document.getElementById('anat-line-' + op).className = 'p-2 rounded-lg bg-emerald-950/60 border border-emerald-500 text-emerald-200 font-bold';
+      }
+    }
+  </script>
+</body>
+</html>
