@@ -9,7 +9,7 @@
 
 > Uma calculadora completa, modular e didática desenvolvida para ensinar conceitos fundamentais de programação, contando com **Calculadora Real (Visor LCD e Botões)**, **Anatomia do Código**, **Simulador de Terminal**, **Histórico de Cálculos** e tratamento rigoroso de erros.
 ---
-https://1-projeto-alura-calculadora-python.vercel.app/
+https://1-projeto-alura-calculadora-python.vercel.app/ <-- [Abra para testar a calculadora]
 
 <img width="1258" height="970" alt="Captura de tela 2026-10-28 183731" src="https://github.com/user-attachments/assets/b367a91f-087e-4915-afc2-f9731719f655" />
 
@@ -48,18 +48,15 @@ python python/calculadora_visual.py
 ### 2. Calculadora no Terminal de Texto:
 python python/calculadora.py
 
-### 3. Aplicação Web no Terminal do VS Code (com Node.js & package.json):  <-- [TRECHO 1]
+### 3. Aplicação Web no Terminal do VS Code (com Node.js & package.json):  <-- [Metodo 1]
 1. Abra o terminal com Ctrl + `
 2. npm install
 3. npx vite
 4. Clique no link http://localhost:5173/
 
-### 4. Abrir Direto pelo index.html (Super Rápido, sem Terminal):          <-- [TRECHO 2]
+### 4. Abrir Direto pelo index.html (Super Rápido, sem Terminal):          <-- [Metodo 2]
 - Opção A: Dois cliques no arquivo index.html no Windows
 - Opção B: Botão direito no index.html > Open with Live Server no VS Code
-
----
-## 🌐 Teste Online no Navegador
 
  
 ## 📁 Estrutura Organizada dos Arquivos
