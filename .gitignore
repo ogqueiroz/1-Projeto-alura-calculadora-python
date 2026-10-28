@@ -1,0 +1,23 @@
+---
+
+### 📁 5. ARQUIVO: `.gitignore`
+*(Configuração para o Git não subir pastas desnecessárias como `node_modules` e caches)*
+
+```gitignore
+node_modules/
+build/
+dist/
+coverage/
+.DS_Store
+*.log
+.env*
+!.env.example
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+env/
+venv/
+.pytest_cache/
