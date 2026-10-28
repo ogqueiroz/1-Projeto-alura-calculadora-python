@@ -21,7 +21,7 @@ Este projeto foi concebido e desenvolvido durante a **Imersão de Engenharia de 
 O objetivo da imersão foi vivenciar na prática o fluxo de trabalho da nova geração de engenharia de software: utilizar **Inteligência Artificial como parceira de desenvolvimento (Pair Programming)** para acelerar a arquitetura, refatoração de código, tratamento de exceções e criação de interfaces modernas.
 ---
 
-### 🛠️ Processo de Criação e Metodologia:
+## 🛠️ Processo de Criação e Metodologia:
 1. **Engenharia de Prompt & Requisitos:** Definição clara dos requisitos de código limpo (funções separadas para operações, menu com loop `while`, validação com `try/except` para não quebrar com letras e proteção contra divisão por zero).
 2. **Modularização de Código:** Separação anatômica do script Python em funções puras com `return` e ponto de entrada seguro com `if __name__ == '__main__':`.
 3. **Evolução da Interface do Usuário (UI/UX):**
@@ -38,6 +38,7 @@ O objetivo da imersão foi vivenciar na prática o fluxo de trabalho da nova ger
 - 🧠 **Anatomia do Código & Lógica de Decisão**: Visualizador passo a passo de como o Python toma decisões com `if / elif` e como as 4 funções (`somar`, `subtrair`, `multiplicar`, `dividir`) processam os dados.
 - 📜 **Histórico de Cálculos Recentes**: Armazenamento cronológico de todas as operações concluídas na sessão.
 - 🛡️ **Tratamento de Exceções**: Proteção nativa contra divisão por zero (`ZeroDivisionError`) e digitação de letras em vez de números.
+
 
 ## 📁 Estrutura Organizada dos Arquivos
 
