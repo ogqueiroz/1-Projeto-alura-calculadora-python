@@ -20,6 +20,7 @@ Este projeto foi concebido e desenvolvido durante a **Imersão de Engenharia de 
 
 O objetivo da imersão foi vivenciar na prática o fluxo de trabalho da nova geração de engenharia de software: utilizar **Inteligência Artificial como parceira de desenvolvimento (Pair Programming)** para acelerar a arquitetura, refatoração de código, tratamento de exceções e criação de interfaces modernas.
 
+
 ## 🛠️ Processo de Criação e Metodologia:
 1. **Engenharia de Prompt & Requisitos:** Definição clara dos requisitos de código limpo (funções separadas para operações, menu com loop `while`, validação com `try/except` para não quebrar com letras e proteção contra divisão por zero).
 2. **Modularização de Código:** Separação anatômica do script Python em funções puras com `return` e ponto de entrada seguro com `if __name__ == '__main__':`.
@@ -28,7 +29,7 @@ O objetivo da imersão foi vivenciar na prática o fluxo de trabalho da nova ger
    - Construção da versão **Desktop Nativa (`Tkinter`)** com janela, visor e botões reais;
    - Desenvolvimento do **Laboratório Web Interativo** com simulador de tomada de decisão (`if / elif`) e histórico reativo na memória.
 4. **Deploy & Publicação:** Versionamento com Git, publicação em repositório público no GitHub com licença MIT e deploy gratuito contínuo na Vercel.
----
+
 
 ## 🌟 Funcionalidades do Projeto
 
