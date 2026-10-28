@@ -39,21 +39,6 @@ O objetivo da imersão foi vivenciar na prática o fluxo de trabalho da nova ger
 - 📜 **Histórico de Cálculos Recentes**: Armazenamento cronológico de todas as operações concluídas na sessão.
 - 🛡️ **Tratamento de Exceções**: Proteção nativa contra divisão por zero (`ZeroDivisionError`) e digitação de letras em vez de números.
 
- 
-## 📁 Estrutura Organizada dos Arquivos
-
-```text
-├── python/                      # 🐍 Scripts Python prontos para rodar no seu computador
-│   ├── calculadora_visual.py    # Versão desktop com janela, visor e botões (Tkinter)
-│   ├── calculadora.py           # Versão clássica de terminal com menu e input()
-│   └── calculadora_turbo.py     # Versão terminal com cores ANSI e histórico
-│
-├── index.html                   # 🌐 Aplicação Web completa (Vercel / GitHub Pages)
-├── README.md                    # 📖 Documentação do projeto
-├── .gitignore                   # 🚫 Arquivos ignorados pelo Git
-└── LICENSE                      # 📜 Licença de código aberto MIT
-
-
 
 ## 🚀 Como Executar no seu Computador
 
@@ -75,3 +60,17 @@ python python/calculadora.py
 
 ---
 ## 🌐 Teste Online no Navegador
+
+ 
+## 📁 Estrutura Organizada dos Arquivos
+
+```text
+├── python/                      # 🐍 Scripts Python prontos para rodar no seu computador
+│   ├── calculadora_visual.py    # Versão desktop com janela, visor e botões (Tkinter)
+│   ├── calculadora.py           # Versão clássica de terminal com menu e input()
+│   └── calculadora_turbo.py     # Versão terminal com cores ANSI e histórico
+│
+├── index.html                   # 🌐 Aplicação Web completa (Vercel / GitHub Pages)
+├── README.md                    # 📖 Documentação do projeto
+├── .gitignore                   # 🚫 Arquivos ignorados pelo Git
+└── LICENSE                      # 📜 Licença de código aberto MIT
