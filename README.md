@@ -1,8 +1,8 @@
 # 🐍 Calculadora em Python: Interativa & Educativa
 
 > Uma calculadora completa e didática para quem está aprendendo programação, com **Calculadora Real (Visor LCD e Botões)**, **Anatomia do Código**, **Terminal Interativo**, **Histórico de Cálculos** e tratamento rigoroso de erros.
-https://1-projeto-alura-calculadora-python.vercel.app/
 ---
+https://1-projeto-alura-calculadora-python.vercel.app/
 <img width="1258" height="970" alt="Captura de tela 2026-10-28 183731" src="https://github.com/user-attachments/assets/b367a91f-087e-4915-afc2-f9731719f655" />
 
 
