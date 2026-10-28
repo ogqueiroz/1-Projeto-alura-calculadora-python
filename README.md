@@ -51,8 +51,8 @@ python python/calculadora.py
 ### 3. Aplicação Web no Terminal do VS Code (com Node.js & package.json):  <-- [Metodo 1]
 1. Abra o terminal com Ctrl + `
 2. npm install
-3. npx vite
-4. Clique no link http://localhost:5173/
+3. npm run dev
+4. Clique no link http://localhost:3000/
 
 ### 4. Abrir Direto pelo index.html (Super Rápido, sem Terminal):          <-- [Metodo 2]
 - Opção A: Dois cliques no arquivo index.html no Windows
