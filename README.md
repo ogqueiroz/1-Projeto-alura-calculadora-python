@@ -39,7 +39,7 @@ O objetivo da imersão foi vivenciar na prática o fluxo de trabalho da nova ger
 - 📜 **Histórico de Cálculos Recentes**: Armazenamento cronológico de todas as operações concluídas na sessão.
 - 🛡️ **Tratamento de Exceções**: Proteção nativa contra divisão por zero (`ZeroDivisionError`) e digitação de letras em vez de números.
 
-
+ 
 ## 📁 Estrutura Organizada dos Arquivos
 
 ```text
@@ -52,3 +52,26 @@ O objetivo da imersão foi vivenciar na prática o fluxo de trabalho da nova ger
 ├── README.md                    # 📖 Documentação do projeto
 ├── .gitignore                   # 🚫 Arquivos ignorados pelo Git
 └── LICENSE                      # 📜 Licença de código aberto MIT
+
+
+
+## 🚀 Como Executar no seu Computador
+
+### 1. Calculadora com Janela e Botões (Recomendado):
+python python/calculadora_visual.py
+
+### 2. Calculadora no Terminal de Texto:
+python python/calculadora.py
+
+### 3. Aplicação Web no Terminal do VS Code (com Node.js & package.json):  <-- [TRECHO 1]
+1. Abra o terminal com Ctrl + `
+2. npm install
+3. npx vite
+4. Clique no link http://localhost:5173/
+
+### 4. Abrir Direto pelo index.html (Super Rápido, sem Terminal):          <-- [TRECHO 2]
+- Opção A: Dois cliques no arquivo index.html no Windows
+- Opção B: Botão direito no index.html > Open with Live Server no VS Code
+
+---
+## 🌐 Teste Online no Navegador
