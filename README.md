@@ -12,7 +12,7 @@
 https://1-projeto-alura-calculadora-python.vercel.app/
 
 <img width="1258" height="970" alt="Captura de tela 2026-10-28 183731" src="https://github.com/user-attachments/assets/b367a91f-087e-4915-afc2-f9731719f655" />
----
+
 
 ## 🎓 Como Foi Feito & Imersão Alura
 
