@@ -25,9 +25,9 @@
         <div>
           <h1 class="font-extrabold text-base sm:text-lg text-white flex items-center gap-2">
             Calculadora em Python
-            <span class="text-[11px] font-mono px-2 py-0.5 rounded-full bg-amber-500/10 text-amber-400 border border-amber-500/30">Completa</span>
+            <span class="text-[11px] font-mono px-2 py-0.5 rounded-full bg-amber-500/10 text-amber-400 border border-amber-500/30">Completa 1.1</span>
           </h1>
-          <p class="text-xs text-slate-400">Visor Digital, Anatomia, Terminal, Códigos, Explicações & Quiz</p>
+          <p class="text-xs text-slate-400">Visor Digital, Porcentagem, Anatomia, Terminal, Códigos & Quiz</p>
         </div>
       </div>
     </div>
@@ -78,14 +78,15 @@
         </div>
 
         <div class="bg-slate-950 rounded-2xl p-4 border-2 border-slate-800 shadow-inner mb-4">
-          <div id="calc-preview" class="text-xs font-mono text-amber-400 text-right truncate h-4">Python 3.12 Engine</div>
+          <div id="calc-preview" class="text-xs font-mono text-amber-400 text-right truncate h-4">Python 3.12 Engine • Pronto</div>
           <div id="calc-display" class="font-mono font-extrabold text-4xl text-amber-300 text-right py-1">0</div>
         </div>
 
+        <!-- Teclado idêntico à calculadora_visual.py -->
         <div class="grid grid-cols-4 gap-2.5 select-none font-bold text-base">
           <button onclick="calcClear()" class="py-3.5 rounded-2xl bg-red-950/40 border border-red-800/40 text-red-300 active:scale-95">C</button>
           <button onclick="calcBackspace()" class="py-3.5 rounded-2xl bg-slate-800 border border-slate-700/60 text-slate-300 active:scale-95">⌫</button>
-          <button onclick="calcSqrt()" class="py-3.5 rounded-2xl bg-slate-800 border border-slate-700/60 text-cyan-400 font-mono active:scale-95">√x</button>
+          <button onclick="calcOp('%')" class="py-3.5 rounded-2xl bg-amber-500/10 border border-amber-500/30 text-amber-400 active:scale-95 text-lg">%</button>
           <button onclick="calcOp('÷')" class="py-3.5 rounded-2xl bg-amber-500/10 border border-amber-500/30 text-amber-400 active:scale-95 text-lg">÷</button>
 
           <button onclick="calcNum('7')" class="py-3.5 rounded-2xl bg-slate-800/50 border border-slate-700/50 text-white active:scale-95">7</button>
@@ -118,6 +119,10 @@
           </div>
           <div id="history-list" class="max-h-[180px] overflow-y-auto space-y-1.5 font-mono text-xs text-slate-300 pr-1">
             <div class="p-2 rounded-xl bg-slate-950/70 border border-slate-800/80 flex justify-between">
+              <span>15% de 200</span>
+              <span class="text-emerald-400 font-bold">= 30</span>
+            </div>
+            <div class="p-2 rounded-xl bg-slate-950/70 border border-slate-800/80 flex justify-between">
               <span>15 + 25</span>
               <span class="text-emerald-400 font-bold">= 40</span>
             </div>
@@ -127,10 +132,10 @@
         <div class="bg-slate-900 border border-slate-800 rounded-3xl p-5 shadow-xl space-y-2 text-xs">
           <h4 class="font-bold text-xs text-slate-200">⚙️ O Python nos Bastidores:</h4>
           <div class="p-2.5 rounded-xl bg-slate-950 border border-slate-800 font-mono text-[11px] text-cyan-300" id="py-decision">
-            opcao == "1" -> chamou somar(a, b)
+            opcao == "5" -> chamou porcentagem(200, 15)
           </div>
           <div class="p-2.5 rounded-xl bg-slate-950 border border-slate-800 font-mono text-[11px] text-emerald-300" id="py-code">
-            def somar(a, b): return a + b
+            def porcentagem(valor, taxa): return (200 * 15) / 100
           </div>
         </div>
       </div>
@@ -144,7 +149,7 @@
           <p class="text-xs text-slate-400">Clique nas opções para ver o caminho exato que o interpretador Python percorre:</p>
         </div>
 
-        <div class="grid grid-cols-2 sm:grid-cols-5 gap-2">
+        <div class="grid grid-cols-2 sm:grid-cols-6 gap-2">
           <button onclick="setAnatomy('1')" class="p-3 rounded-xl bg-slate-950 border border-slate-800 hover:border-amber-500 text-left text-xs font-mono">
             <span class="text-amber-400 font-bold block">opcao = "1"</span>
             <span class="text-slate-400 text-[11px]">Somar (+)</span>
@@ -161,6 +166,10 @@
             <span class="text-amber-400 font-bold block">opcao = "4"</span>
             <span class="text-slate-400 text-[11px]">Dividir (/)</span>
           </button>
+          <button onclick="setAnatomy('5')" class="p-3 rounded-xl bg-slate-950 border border-slate-800 hover:border-amber-500 text-left text-xs font-mono">
+            <span class="text-amber-400 font-bold block">opcao = "5"</span>
+            <span class="text-slate-400 text-[11px]">Porcentagem (%)</span>
+          </button>
           <button onclick="setAnatomy('9')" class="p-3 rounded-xl bg-slate-950 border border-slate-800 hover:border-red-500 text-left text-xs font-mono">
             <span class="text-red-400 font-bold block">opcao = "9"</span>
             <span class="text-slate-400 text-[11px]">Inválida ⚠️</span>
@@ -169,7 +178,7 @@
 
         <div class="bg-slate-950 rounded-2xl p-4 border border-slate-800 font-mono text-xs space-y-1.5">
           <div id="anat-line-val" class="p-2 rounded-lg text-slate-500">
-            <code>if opcao not in ("1", "2", "3", "4"): print("⚠️ Opção inválida!"); continue</code>
+            <code>if opcao not in ("1", "2", "3", "4", "5"): print("⚠️ Opção inválida!"); continue</code>
           </div>
           <div id="anat-line-1" class="p-2 rounded-lg bg-emerald-950/60 border border-emerald-500 text-emerald-200 font-bold">
             <code>if opcao == "1": resultado = somar(num1, num2); simbolo = "+"</code>
@@ -183,12 +192,15 @@
           <div id="anat-line-4" class="p-2 rounded-lg text-slate-500">
             <code>elif opcao == "4": resultado = dividir(num1, num2); simbolo = "/"</code>
           </div>
+          <div id="anat-line-5" class="p-2 rounded-lg text-slate-500">
+            <code>elif opcao == "5": resultado = porcentagem(num1, num2); simbolo = "%"</code>
+          </div>
         </div>
       </div>
 
       <div class="bg-slate-900 border border-slate-800 rounded-3xl p-6 shadow-xl space-y-4">
-        <h2 class="text-base font-bold text-slate-100">🔬 2. O Código Isolado das 4 Operações</h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs font-mono">
+        <h2 class="text-base font-bold text-slate-100">🔬 2. O Código Isolado das 5 Operações</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 text-xs font-mono">
           <div class="p-4 rounded-2xl bg-slate-950 border border-slate-800 space-y-1">
             <span class="text-amber-400 font-bold block">1. Soma</span>
             <pre class="text-slate-300"><code>def somar(a, b):
@@ -211,6 +223,11 @@
         raise ZeroDivisionError("Não divide por 0")
     return a / b</code></pre>
           </div>
+          <div class="p-4 rounded-2xl bg-slate-950 border border-slate-800 space-y-1 md:col-span-2 lg:col-span-2">
+            <span class="text-amber-400 font-bold block">5. Porcentagem (%)</span>
+            <pre class="text-slate-300"><code>def porcentagem(valor_base, taxa_percentual):
+    return (valor_base * taxa_percentual) / 100</code></pre>
+          </div>
         </div>
       </div>
     </div>
@@ -220,6 +237,7 @@
       <div class="bg-slate-900 border border-slate-800 rounded-3xl p-6 shadow-xl space-y-4">
         <h3 class="font-bold text-sm text-slate-200">⌨️ Terminal Python Interativo (Simulador)</h3>
         <div class="flex flex-wrap gap-2 text-xs">
+          <button onclick="terminalTest('porcento')" class="px-3 py-1.5 rounded-lg bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 border border-amber-500/40">Testar Porcentagem (15% de 200)</button>
           <button onclick="terminalTest('soma')" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700">Testar Soma (15 + 5)</button>
           <button onclick="terminalTest('zero')" class="px-3 py-1.5 rounded-lg bg-red-950/40 hover:bg-red-900/60 text-red-300 border border-red-800/40">Testar Divisão por Zero</button>
           <button onclick="terminalTest('letra')" class="px-3 py-1.5 rounded-lg bg-amber-950/40 hover:bg-amber-900/60 text-amber-300 border border-amber-800/40">Testar Digitar Letra ('dez')</button>
@@ -228,11 +246,12 @@
         <div id="term-box" class="bg-slate-950 rounded-2xl p-5 border border-slate-800 font-mono text-xs leading-relaxed space-y-1 text-slate-300 min-h-[200px]">
           <div class="text-slate-500 text-[11px]">>>> python calculadora.py</div>
           <div class="text-cyan-400 font-bold">========================================<br>         CALCULADORA EM PYTHON<br>========================================</div>
-          <div>1 - Somar (+) | 2 - Subtrair (-) | 3 - Multiplicar (*) | 4 - Dividir (/) | 0 - Sair</div>
-          <div class="text-amber-300 pt-2">Escolha uma opção (0 a 4): 1</div>
-          <div class="text-slate-400">Digite o primeiro número: 15.5</div>
-          <div class="text-slate-400">Digite o segundo número: 4.5</div>
-          <div class="text-emerald-400 font-bold pt-1 bg-emerald-950/30 p-2 rounded border border-emerald-800/40">✓ Resultado: 15.5 + 4.5 = 20.0</div>
+          <div>1 - Somar (+) | 2 - Subtrair (-) | 3 - Multiplicar (*) | 4 - Dividir (/) | 5 - Porcentagem (%) | 0 - Sair</div>
+          <div class="text-amber-300 pt-2">Escolha uma opção (0 a 5): 5</div>
+          <div class="text-slate-400">--- Digite os valores para o cálculo de porcentagem ---</div>
+          <div class="text-slate-400">Digite o valor total/base (ex: 200): 200</div>
+          <div class="text-slate-400">Digite a taxa da porcentagem % (ex: 15): 15</div>
+          <div class="text-emerald-400 font-bold pt-1 bg-emerald-950/30 p-2 rounded border border-emerald-800/40">✓ Resultado: 15% de 200 = 30</div>
         </div>
       </div>
     </div>
@@ -245,7 +264,7 @@
           <button onclick="copyCode()" id="copy-btn" class="px-3.5 py-1.5 bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold rounded-lg text-xs">Copiar Código</button>
         </div>
         <div class="flex gap-2 text-xs">
-          <button onclick="showCodeTab('visual')" id="cbtn-visual" class="px-3 py-1.5 rounded-lg bg-amber-500 text-slate-950 font-bold">1. Calculadora Visual (Tkinter)</button>
+          <button onclick="showCodeTab('visual')" id="cbtn-visual" class="px-3 py-1.5 rounded-lg bg-amber-500 text-slate-950 font-bold">1. Calculadora Visual (calculadora_visual.py)</button>
           <button onclick="showCodeTab('base')" id="cbtn-base" class="px-3 py-1.5 rounded-lg bg-slate-800 text-slate-400">2. Terminal Básico (calculadora.py)</button>
         </div>
         <div class="bg-slate-950 rounded-2xl p-4 border border-slate-800 font-mono text-xs overflow-x-auto max-h-[420px]">
@@ -276,8 +295,8 @@
             <p class="text-slate-400">Devolve o cálculo feito dentro da função para quem chamou poder guardar ou exibir.</p>
           </div>
           <div class="p-3.5 rounded-xl bg-slate-950 border border-slate-800">
-            <span class="font-mono text-purple-400 font-bold block mb-1">break</span>
-            <p class="text-slate-400">Quebra o laço de repetição imediatamente quando o usuário escolhe a opção 0.</p>
+            <span class="font-mono text-purple-400 font-bold block mb-1">porcentagem()</span>
+            <p class="text-slate-400">Multiplica o valor base pela taxa e divide por 100 para descobrir a parte correspondente.</p>
           </div>
           <div class="p-3.5 rounded-xl bg-slate-950 border border-slate-800">
             <span class="font-mono text-orange-400 font-bold block mb-1">if __name__ == '__main__':</span>
@@ -293,16 +312,16 @@
         <h2 class="text-base font-bold text-slate-100">🎨 Guia de Personalizações Práticas</h2>
         <div class="space-y-3 text-xs">
           <div class="p-4 rounded-2xl bg-slate-950 border border-slate-800 space-y-1">
-            <span class="font-bold text-amber-400 text-sm block">1. Limitar a 2 casas decimais (:2f)</span>
-            <p class="text-slate-400">Troque <code>print(f"{resultado}")</code> por <code>print(f"{resultado:.2f}")</code> para exibir 3.33 em vez de 3.3333333335.</p>
+            <span class="font-bold text-amber-400 text-sm block">1. Formatação Limpa (formatar_numero)</span>
+            <p class="text-slate-400">Oculta o <code>.0</code> quando o número é inteiro (10 em vez de 10.0), deixando decimais apenas quando necessário.</p>
           </div>
           <div class="p-4 rounded-2xl bg-slate-950 border border-slate-800 space-y-1">
-            <span class="font-bold text-cyan-400 text-sm block">2. Adicionar Potência (a ** b)</span>
-            <p class="text-slate-400">Crie a função <code>def potencia(a, b): return a ** b</code> e adicione no menu como opção 5.</p>
+            <span class="font-bold text-cyan-400 text-sm block">2. Adicionar Potência (a ** b) e Raiz (√)</span>
+            <p class="text-slate-400">Veja o arquivo <code>calculadora_turbo.py</code> que inclui <code>a ** b</code> e <code>math.sqrt(a)</code> com cores ANSI!</p>
           </div>
           <div class="p-4 rounded-2xl bg-slate-950 border border-slate-800 space-y-1">
             <span class="font-bold text-emerald-400 text-sm block">3. Salvar Histórico</span>
-            <p class="text-slate-400">Crie <code>historico = []</code> e dê <code>historico.append(f"{a} + {b} = {resultado}")</code> após cada conta.</p>
+            <p class="text-slate-400">Crie <code>historico = []</code> e faça <code>historico.append(...)</code> após cada conta para consultar mais tarde.</p>
           </div>
         </div>
       </div>
@@ -316,12 +335,14 @@
           <div class="p-4 rounded-2xl bg-slate-950 border border-slate-800 space-y-2">
             <span class="font-bold text-amber-400 block">Opção A: Calculadora com Janela (Tkinter)</span>
             <p class="text-slate-400">Abra o terminal na pasta e digite:</p>
-            <code class="block p-2 bg-slate-900 text-emerald-300 rounded-lg">python calculadora_visual.py</code>
+            <code class="block p-2 bg-slate-900 text-emerald-300 rounded-lg font-mono">python calculadora_visual.py</code>
+            <p class="text-[11px] text-slate-500">Ou via atalho npm: <code>npm run calc:visual</code></p>
           </div>
           <div class="p-4 rounded-2xl bg-slate-950 border border-slate-800 space-y-2">
             <span class="font-bold text-cyan-400 block">Opção B: Modo Terminal Clássico</span>
             <p class="text-slate-400">Abra o terminal na pasta e digite:</p>
-            <code class="block p-2 bg-slate-900 text-emerald-300 rounded-lg">python calculadora.py</code>
+            <code class="block p-2 bg-slate-900 text-emerald-300 rounded-lg font-mono">python calculadora.py</code>
+            <p class="text-[11px] text-slate-500">Ou via atalho npm: <code>npm run calc</code></p>
           </div>
         </div>
       </div>
@@ -342,10 +363,10 @@
           </div>
 
           <div class="p-4 rounded-2xl bg-slate-950 border border-slate-800 space-y-2">
-            <span class="font-bold text-slate-200">2. Para que serve o comando 'break' dentro do while?</span>
+            <span class="font-bold text-slate-200">2. Como calculamos 15% de 200 em Python?</span>
             <div class="space-y-1">
-              <button onclick="answerQuiz(2, true, this)" class="w-full text-left p-2 rounded bg-slate-900 hover:bg-slate-800 text-slate-300">Para interromper e sair imediatamente do loop (Correto!)</button>
-              <button onclick="answerQuiz(2, false, this)" class="w-full text-left p-2 rounded bg-slate-900 hover:bg-slate-800 text-slate-300">Para reiniciar o computador</button>
+              <button onclick="answerQuiz(2, true, this)" class="w-full text-left p-2 rounded bg-slate-900 hover:bg-slate-800 text-slate-300">(200 * 15) / 100, resultando em 30 (Correto!)</button>
+              <button onclick="answerQuiz(2, false, this)" class="w-full text-left p-2 rounded bg-slate-900 hover:bg-slate-800 text-slate-300">200 + 15 / 1000</button>
             </div>
             <div id="quiz-fb-2" class="hidden p-2 rounded text-[11px] font-bold"></div>
           </div>
@@ -379,110 +400,209 @@
 
     let display = '0', stored = null, operator = null, newNum = true;
 
+    function formatNum(n) {
+      if (Number.isInteger(n)) return n.toString();
+      return parseFloat(n.toFixed(4)).toString();
+    }
+
     function calcNum(digit) {
       if (newNum) { display = digit; newNum = false; }
       else { display = display === '0' ? digit : display + digit; }
       updateDisplay();
     }
+
     function calcDot() {
       if (newNum) { display = '0.'; newNum = false; }
       else if (!display.includes('.')) { display += '.'; }
       updateDisplay();
     }
+
     function calcOp(op) {
+      // Se já havia uma conta pendente, calcula primeiro (cálculos encadeados como 5 + 3 + 2)
+      if (stored !== null && !newNum) {
+        calcEqual();
+      }
       stored = parseFloat(display);
       operator = op;
       newNum = true;
-      document.getElementById('calc-preview').innerText = stored + ' ' + op;
+      document.getElementById('calc-preview').innerText = formatNum(stored) + ' ' + op;
     }
+
     function calcEqual() {
       if (stored === null || operator === null) return;
       const b = parseFloat(display);
       let res = 0, pyDec = '', pyFunc = '';
-      if (operator === '+') { res = stored + b; pyDec = 'opcao == "1" -> chamou somar(' + stored + ', ' + b + ')'; pyFunc = 'def somar(a, b): return ' + stored + ' + ' + b; }
-      else if (operator === '-') { res = stored - b; pyDec = 'opcao == "2" -> chamou subtrair(' + stored + ', ' + b + ')'; pyFunc = 'def subtrair(a, b): return ' + stored + ' - ' + b; }
-      else if (operator === '×') { res = stored * b; pyDec = 'opcao == "3" -> chamou multiplicar(' + stored + ', ' + b + ')'; pyFunc = 'def multiplicar(a, b): return ' + stored + ' * ' + b; }
-      else if (operator === '÷') {
+
+      if (operator === '+') {
+        res = stored + b;
+        pyDec = 'opcao == "1" -> chamou somar(' + formatNum(stored) + ', ' + formatNum(b) + ')';
+        pyFunc = 'def somar(a, b): return ' + formatNum(stored) + ' + ' + formatNum(b);
+      } else if (operator === '-') {
+        res = stored - b;
+        pyDec = 'opcao == "2" -> chamou subtrair(' + formatNum(stored) + ', ' + formatNum(b) + ')';
+        pyFunc = 'def subtrair(a, b): return ' + formatNum(stored) + ' - ' + formatNum(b);
+      } else if (operator === '×') {
+        res = stored * b;
+        pyDec = 'opcao == "3" -> chamou multiplicar(' + formatNum(stored) + ', ' + formatNum(b) + ')';
+        pyFunc = 'def multiplicar(a, b): return ' + formatNum(stored) + ' * ' + formatNum(b);
+      } else if (operator === '÷') {
         if (b === 0) {
           display = 'Erro: div por 0'; updateDisplay();
           document.getElementById('py-decision').innerText = '⚠️ ZeroDivisionError capturado!';
           document.getElementById('py-code').innerText = 'raise ZeroDivisionError("Divisão por zero")';
           stored = null; operator = null; newNum = true; return;
         }
-        res = stored / b; pyDec = 'opcao == "4" -> chamou dividir(' + stored + ', ' + b + ')'; pyFunc = 'def dividir(a, b): return ' + stored + ' / ' + b;
+        res = stored / b;
+        pyDec = 'opcao == "4" -> chamou dividir(' + formatNum(stored) + ', ' + formatNum(b) + ')';
+        pyFunc = 'def dividir(a, b): return ' + formatNum(stored) + ' / ' + formatNum(b);
+      } else if (operator === '%') {
+        res = (stored * b) / 100;
+        pyDec = 'opcao == "5" -> chamou porcentagem(' + formatNum(stored) + ', ' + formatNum(b) + ')';
+        pyFunc = 'def porcentagem(valor, taxa): return (' + formatNum(stored) + ' * ' + formatNum(b) + ') / 100';
       }
-      const resStr = Number.isInteger(res) ? res.toString() : parseFloat(res.toFixed(4)).toString();
-      document.getElementById('calc-preview').innerText = stored + ' ' + operator + ' ' + b + ' =';
+
+      const resStr = formatNum(res);
+      const sStr = formatNum(stored);
+      const bStr = formatNum(b);
+
       const hist = document.createElement('div');
       hist.className = 'p-2 rounded-xl bg-slate-950/70 border border-slate-800/80 flex justify-between';
-      hist.innerHTML = '<span>' + stored + ' ' + operator + ' ' + b + '</span><span class="text-emerald-400 font-bold">= ' + resStr + '</span>';
+      if (operator === '%') {
+        document.getElementById('calc-preview').innerText = bStr + '% de ' + sStr + ' =';
+        hist.innerHTML = '<span>' + bStr + '% de ' + sStr + '</span><span class="text-emerald-400 font-bold">= ' + resStr + '</span>';
+      } else {
+        document.getElementById('calc-preview').innerText = sStr + ' ' + operator + ' ' + bStr + ' =';
+        hist.innerHTML = '<span>' + sStr + ' ' + operator + ' ' + bStr + '</span><span class="text-emerald-400 font-bold">= ' + resStr + '</span>';
+      }
+
       document.getElementById('history-list').prepend(hist);
-      display = resStr; stored = null; operator = null; newNum = true;
+      display = resStr;
+      stored = null;
+      operator = null;
+      newNum = true;
       updateDisplay();
       document.getElementById('py-decision').innerText = pyDec;
       document.getElementById('py-code').innerText = pyFunc;
     }
+
     function calcClear() {
       display = '0'; stored = null; operator = null; newNum = true;
       document.getElementById('calc-preview').innerText = 'Pronto para calcular';
       updateDisplay();
     }
-    function calcSqrt() {
-      const v = parseFloat(display);
-      if (v < 0) { display = 'Erro'; updateDisplay(); return; }
-      const res = Math.sqrt(v);
-      display = Number.isInteger(res) ? res.toString() : parseFloat(res.toFixed(4)).toString();
-      newNum = true;
-      document.getElementById('calc-preview').innerText = '√(' + v + ') =';
+
+    function calcSign() {
+      const v = parseFloat(display) * -1;
+      display = formatNum(v);
       updateDisplay();
     }
-    function calcSign() { display = (parseFloat(display) * -1).toString(); updateDisplay(); }
+
     function calcBackspace() {
-      if (display.length > 1) display = display.slice(0, -1);
-      else { display = '0'; newNum = true; }
+      // Se for "-5", ao apagar resta apenas "-", então reseta para "0"
+      if (display.length > 1 && !(display.length === 2 && display.startsWith('-'))) {
+        display = display.slice(0, -1);
+      } else {
+        display = '0';
+        newNum = true;
+      }
       updateDisplay();
     }
-    function clearHistory() { document.getElementById('history-list').innerHTML = '<div class="text-slate-500 text-center py-4">Histórico limpo.</div>'; }
-    function updateDisplay() { document.getElementById('calc-display').innerText = display; }
+
+    function clearHistory() {
+      document.getElementById('history-list').innerHTML = '<div class="text-slate-500 text-center py-4">Histórico limpo.</div>';
+    }
+
+    function updateDisplay() {
+      document.getElementById('calc-display').innerText = display;
+    }
+
+    // Suporte ao teclado físico na página web
+    window.addEventListener('keydown', (e) => {
+      const key = e.key;
+      if (key >= '0' && key <= '9') calcNum(key);
+      else if (key === '.' || key === ',') calcDot();
+      else if (key === '+') calcOp('+');
+      else if (key === '-') calcOp('-');
+      else if (key === '*') calcOp('×');
+      else if (key === '/') { e.preventDefault(); calcOp('÷'); }
+      else if (key === '%') calcOp('%');
+      else if (key === 'Enter' || key === '=') calcEqual();
+      else if (key === 'Backspace') calcBackspace();
+      else if (key === 'Escape' || key.toLowerCase() === 'c') calcClear();
+    });
 
     function setAnatomy(op) {
-      ['val', '1', '2', '3', '4'].forEach(l => {
-        document.getElementById('anat-line-' + l).className = 'p-2 rounded-lg text-slate-500';
+      ['val', '1', '2', '3', '4', '5'].forEach(l => {
+        const el = document.getElementById('anat-line-' + l);
+        if (el) el.className = 'p-2 rounded-lg text-slate-500';
       });
-      if (op === '9') document.getElementById('anat-line-val').className = 'p-2 rounded-lg bg-red-950/60 border border-red-500 text-red-200 font-bold';
-      else document.getElementById('anat-line-' + op).className = 'p-2 rounded-lg bg-emerald-950/60 border border-emerald-500 text-emerald-200 font-bold';
+      if (op === '9') {
+        document.getElementById('anat-line-val').className = 'p-2 rounded-lg bg-red-950/60 border border-red-500 text-red-200 font-bold';
+      } else {
+        document.getElementById('anat-line-' + op).className = 'p-2 rounded-lg bg-emerald-950/60 border border-emerald-500 text-emerald-200 font-bold';
+      }
     }
 
     function terminalTest(type) {
       const box = document.getElementById('term-box');
-      if (type === 'soma') {
+      if (type === 'porcento') {
         box.innerHTML = `<div class="text-cyan-400 font-bold">========================================<br>         CALCULADORA EM PYTHON<br>========================================</div>
-<div>1 - Somar (+) | 2 - Subtrair (-) | 3 - Multiplicar (*) | 4 - Dividir (/) | 0 - Sair</div>
-<div class="text-amber-300 pt-2">Escolha uma opção (0 a 4): 1</div>
+<div>1 - Somar (+) | 2 - Subtrair (-) | 3 - Multiplicar (*) | 4 - Dividir (/) | 5 - Porcentagem (%) | 0 - Sair</div>
+<div class="text-amber-300 pt-2">Escolha uma opção (0 a 5): 5</div>
+<div class="text-slate-400">--- Digite os valores para o cálculo de porcentagem ---</div>
+<div class="text-slate-400">Digite o valor total/base (ex: 200): 200</div>
+<div class="text-slate-400">Digite a taxa da porcentagem % (ex: 15): 15</div>
+<div class="text-emerald-400 font-bold pt-1 bg-emerald-950/30 p-2 rounded border border-emerald-800/40">✓ Resultado: 15% de 200 = 30</div>`;
+      } else if (type === 'soma') {
+        box.innerHTML = `<div class="text-cyan-400 font-bold">========================================<br>         CALCULADORA EM PYTHON<br>========================================</div>
+<div>1 - Somar (+) | 2 - Subtrair (-) | 3 - Multiplicar (*) | 4 - Dividir (/) | 5 - Porcentagem (%) | 0 - Sair</div>
+<div class="text-amber-300 pt-2">Escolha uma opção (0 a 5): 1</div>
 <div class="text-slate-400">Digite o primeiro número: 15</div>
 <div class="text-slate-400">Digite o segundo número: 5</div>
-<div class="text-emerald-400 font-bold pt-1 bg-emerald-950/30 p-2 rounded border border-emerald-800/40">✓ Resultado: 15 + 5 = 20.0</div>`;
+<div class="text-emerald-400 font-bold pt-1 bg-emerald-950/30 p-2 rounded border border-emerald-800/40">✓ Resultado: 15 + 5 = 20</div>`;
       } else if (type === 'zero') {
         box.innerHTML = `<div class="text-cyan-400 font-bold">========================================<br>         CALCULADORA EM PYTHON<br>========================================</div>
-<div class="text-amber-300 pt-2">Escolha uma opção (0 a 4): 4</div>
+<div class="text-amber-300 pt-2">Escolha uma opção (0 a 5): 4</div>
 <div class="text-slate-400">Digite o primeiro número: 50</div>
 <div class="text-slate-400">Digite o segundo número: 0</div>
-<div class="text-red-400 font-bold pt-1 bg-red-950/30 p-2 rounded border border-red-800/40">⚠️ Erro matemático: Não é possível dividir por zero!</div>`;
+<div class="text-red-400 font-bold pt-1 bg-red-950/30 p-2 rounded border border-red-800/40">⚠️ Erro matemático: Não é possível realizar divisão por zero.</div>`;
       } else if (type === 'letra') {
         box.innerHTML = `<div class="text-cyan-400 font-bold">========================================<br>         CALCULADORA EM PYTHON<br>========================================</div>
-<div class="text-amber-300 pt-2">Escolha uma opção (0 a 4): 1</div>
+<div class="text-amber-300 pt-2">Escolha uma opção (0 a 5): 1</div>
 <div class="text-slate-400">Digite o primeiro número: dez</div>
 <div class="text-amber-400 font-bold pt-1 bg-amber-950/30 p-2 rounded border border-amber-800/40">⚠️ Entrada inválida! Por favor, digite apenas números.</div>
 <div class="text-slate-400">Digite o primeiro número: 10</div>`;
       } else if (type === 'invalida') {
         box.innerHTML = `<div class="text-cyan-400 font-bold">========================================<br>         CALCULADORA EM PYTHON<br>========================================</div>
-<div class="text-amber-300 pt-2">Escolha uma opção (0 a 4): 9</div>
-<div class="text-red-400 font-bold pt-1 bg-red-950/30 p-2 rounded border border-red-800/40">⚠️ Opção inválida! Escolha um número entre 0 e 4.</div>`;
+<div class="text-amber-300 pt-2">Escolha uma opção (0 a 5): 9</div>
+<div class="text-red-400 font-bold pt-1 bg-red-950/30 p-2 rounded border border-red-800/40">⚠️ Opção inválida! Escolha um número entre 0 e 5.</div>`;
       }
     }
 
-    const CODE_VISUAL = `import tkinter as tk\ndef somar(a, b): return a + b\ndef subtrair(a, b): return a - b\ndef multiplicar(a, b): return a * b\ndef dividir(a, b): return a / b if b != 0 else 'Erro'\n# Veja calculadora_visual.py no seu repositório para o código completo!`;
-    const CODE_BASE = `def somar(a, b): return a + b\ndef subtrair(a, b): return a - b\ndef multiplicar(a, b): return a * b\ndef dividir(a, b): return a / b if b != 0 else 'Erro'\n# Veja calculadora.py no seu repositório para o código completo!`;
+    const CODE_VISUAL = `import tkinter as tk
+from tkinter import messagebox
+
+# 1. FUNÇÕES MATEMÁTICAS
+def somar(a, b): return a + b
+def subtrair(a, b): return a - b
+def multiplicar(a, b): return a * b
+def dividir(a, b):
+    if b == 0: raise ZeroDivisionError("Não é possível dividir por zero!")
+    return a / b
+def porcentagem(a, b): return (a * b) / 100
+
+# Veja calculadora_visual.py no seu projeto para o código completo com Tkinter!`;
+
+    const CODE_BASE = `def somar(a, b): return a + b
+def subtrair(a, b): return a - b
+def multiplicar(a, b): return a * b
+def dividir(a, b):
+    if b == 0: raise ZeroDivisionError("Não é possível realizar divisão por zero.")
+    return a / b
+def porcentagem(valor, taxa): return (valor * taxa) / 100
+def formatar_numero(n): return int(n) if n.is_integer() else n
+
+# Veja calculadora.py no seu projeto para o código completo com menu!`;
 
     function showCodeTab(t) {
       document.getElementById('code-content').innerText = t === 'visual' ? CODE_VISUAL : CODE_BASE;
