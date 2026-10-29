@@ -35,26 +35,36 @@ O objetivo da imersão foi vivenciar na prática o fluxo de trabalho da nova ger
 
 - 🖥️ **Calculadora Desktop com Janela Real (`Tkinter`)**: Abre uma janela no Windows, Mac ou Linux com botões clicáveis, visor digital e histórico. Não requer instalação de pacotes externos!
 - ⌨️ **Modo Terminal de Comando (`CLI`)**: Versão pura e robusta para terminal com menu de opções (`1` a `4`, `0` para sair), validação de decimais (`float`) e captura de `ValueError`.
-- 🧠 **Anatomia do Código & Lógica de Decisão**: Visualizador passo a passo de como o Python toma decisões com `if / elif` e como as 4 funções (`somar`, `subtrair`, `multiplicar`, `dividir`) processam os dados.
+- 🧠 **Anatomia do Código & Lógica de Decisão**: Visualizador passo a passo de como o Python toma decisões com `if / elif` e como as 4 funções (`somar`, `subtrair`, `multiplicar`, `dividir`, `porcentagem`) processam os dados.
 - 📜 **Histórico de Cálculos Recentes**: Armazenamento cronológico de todas as operações concluídas na sessão.
 - 🛡️ **Tratamento de Exceções**: Proteção nativa contra divisão por zero (`ZeroDivisionError`) e digitação de letras em vez de números.
 
 
-## 🚀 Como Executar no seu Computador
+## 🚀 Como Executar
 
-### 1. Calculadora com Janela e Botões (Recomendado):
-python python/calculadora_visual.py
+### 1. No Terminal (Python):
+```bash
+# Calculadora Visual com Janela (Tkinter):
+python calculadora_visual.py
 
-### 2. Calculadora no Terminal de Texto:
-python python/calculadora.py
+# Calculadora Básica no Terminal:
+python calculadora.py
 
-### 3. Aplicação Web no Terminal do VS Code (com Node.js & package.json):  <-- [Metodo 1]
-1. Abra o terminal com Ctrl + `
-2. npm install
-3. npm run dev
-4. Clique no link http://localhost:3000/
+# Calculadora Turbo com Cores e Histórico:
+python calculadora_turbo.py
+```
 
-### 4. Abrir Direto pelo index.html (Super Rápido, sem Terminal):          <-- [Metodo 2]
+### 2. No Navegador Web (Vite):
+```bash
+npm run dev
+```
+Ou use os atalhos npm para rodar direto pelo Node:
+```bash
+npm run calc:visual
+npm run calc
+```
+
+### 3. Abrir Direto pelo index.html (Super Rápido, sem Terminal):
 - Opção A: Dois cliques no arquivo index.html no Windows
 - Opção B: Botão direito no index.html > Open with Live Server no VS Code
 
