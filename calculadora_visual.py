@@ -3,7 +3,7 @@ Calculadora Visual em Python (Interface Gráfica Desktop com Tkinter)
 Autor: Projeto Educativo
 Objetivo: Calculadora com Janela, Visor Digital, Botões Clicáveis e Histórico.
 Requisitos: Nenhum! Usa a biblioteca nativa tkinter que já vem instalada com o Python.
-Executar: python python/calculadora_visual.py
+Executar: python calculadora_visual.py
 """
 
 import tkinter as tk
@@ -11,7 +11,7 @@ from tkinter import messagebox
 
 
 # =====================================================================
-# 1. FUNÇÕES DAS 4 OPERAÇÕES MATEMÁTICAS BÁSICAS
+# 1. FUNÇÕES DAS OPERAÇÕES MATEMÁTICAS
 # =====================================================================
 
 def somar(a, b):
@@ -27,6 +27,10 @@ def dividir(a, b):
     if b == 0:
         raise ZeroDivisionError("Não é possível dividir por zero!")
     return a / b
+
+def porcentagem(a, b):
+    """Retorna o valor correspondente à porcentagem de um número (b% de a)."""
+    return (a * b) / 100
 
 
 # =====================================================================
@@ -48,17 +52,44 @@ class CalculadoraVisualApp:
 
         self.criar_componentes()
 
+    @staticmethod
+    def formatar_numero(n):
+        """Formata números para exibição elegante, omitindo .0 quando forem inteiros."""
+        if n.is_integer():
+            return str(int(n))
+        return f"{n:.4f}".rstrip("0").rstrip(".")
+
     def criar_componentes(self):
-        # 1. VISOR SECUNDÁRIO (Mostra a expressão anterior)
+        # 1. BARRA SUPERIOR (Histórico + Visor Secundário da Expressão)
+        frame_topo = tk.Frame(self.root, bg="#0f172a")
+        frame_topo.pack(fill="x", padx=16, pady=(16, 4))
+
+        btn_hist = tk.Button(
+            frame_topo,
+            text="📜 Histórico",
+            font=("Segoe UI", 9, "bold"),
+            bg="#1e293b",
+            fg="#c084fc",
+            activebackground="#c084fc",
+            activeforeground="#0f172a",
+            bd=0,
+            relief="flat",
+            cursor="hand2",
+            padx=8,
+            pady=3,
+            command=self.mostrar_historico
+        )
+        btn_hist.pack(side="left")
+
         self.lbl_expressao = tk.Label(
-            self.root, 
+            frame_topo, 
             text="Python 3 • Pronto", 
             font=("Consolas", 10), 
             bg="#0f172a", 
             fg="#94a3b8", 
             anchor="e"
         )
-        self.lbl_expressao.pack(fill="x", padx=16, pady=(16, 4))
+        self.lbl_expressao.pack(side="right", fill="x", expand=True)
 
         # 2. VISOR PRINCIPAL (Mostra o número grande digitado)
         self.visor = tk.Entry(
@@ -83,7 +114,7 @@ class CalculadoraVisualApp:
         botoes = [
             ("C", 0, 0, "#450a0a", "#fca5a5"), 
             ("⌫", 0, 1, "#1e293b", "#cbd5e1"), 
-            ("Hist", 0, 2, "#1e293b", "#c084fc"), 
+            ("%", 0, 2, "#78350f", "#fef3c7"), 
             ("÷", 0, 3, "#78350f", "#fef3c7"),
 
             ("7", 1, 0, "#1e293b", "#ffffff"), 
@@ -157,11 +188,13 @@ class CalculadoraVisualApp:
             self.definir_operador("×")
         elif tecla == "/":
             self.definir_operador("÷")
+        elif tecla == "%":
+            self.definir_operador("%")
         elif event.keysym in ("Return", "KP_Enter") or tecla == "=":
             self.calcular_resultado()
         elif event.keysym == "BackSpace":
             self.apagar_digito()
-        elif event.keysym == "Escape":
+        elif event.keysym == "Escape" or tecla.lower() == "c":
             self.limpar_tudo()
 
     def clicar_botao(self, tecla):
@@ -169,7 +202,7 @@ class CalculadoraVisualApp:
             self.adicionar_digito(tecla)
         elif tecla == ".":
             self.adicionar_ponto()
-        elif tecla in ("+", "-", "×", "÷"):
+        elif tecla in ("+", "-", "×", "÷", "%"):
             self.definir_operador(tecla)
         elif tecla == "=":
             self.calcular_resultado()
@@ -202,10 +235,17 @@ class CalculadoraVisualApp:
 
     def definir_operador(self, op):
         try:
-            self.primeiro_numero = float(self.visor.get())
+            # Se já há um cálculo pendente e um novo número foi digitado, resolve primeiro (cálculos encadeados como 5 + 3 + 2)
+            if self.primeiro_numero is not None and not self.novo_numero:
+                self.calcular_resultado()
+
+            valor_atual = float(self.visor.get())
+            self.primeiro_numero = valor_atual
             self.operador_atual = op
             self.novo_numero = True
-            self.lbl_expressao.config(text=f"{self.primeiro_numero} {op}")
+
+            texto_formatado = self.formatar_numero(valor_atual)
+            self.lbl_expressao.config(text=f"{texto_formatado} {op}")
         except ValueError:
             pass
 
@@ -227,14 +267,23 @@ class CalculadoraVisualApp:
                 res = multiplicar(a, b)
             elif op == "÷":
                 res = dividir(a, b)
+            elif op == "%":
+                res = porcentagem(a, b)
 
-            texto_res = str(int(res)) if res.is_integer() else f"{res:.4f}".rstrip("0").rstrip(".")
+            texto_res = self.formatar_numero(res)
+            a_formatado = self.formatar_numero(a)
+            b_formatado = self.formatar_numero(b)
 
             # Guarda no histórico recente
-            registro = f"{a} {op} {b} = {texto_res}"
+            if op == "%":
+                registro = f"{b_formatado}% de {a_formatado} = {texto_res}"
+                self.lbl_expressao.config(text=f"{b_formatado}% de {a_formatado} =")
+            else:
+                registro = f"{a_formatado} {op} {b_formatado} = {texto_res}"
+                self.lbl_expressao.config(text=f"{a_formatado} {op} {b_formatado} =")
+
             self.historico.append(registro)
 
-            self.lbl_expressao.config(text=f"{a} {op} {b} =")
             self.visor.delete(0, tk.END)
             self.visor.insert(0, texto_res)
 
@@ -258,7 +307,8 @@ class CalculadoraVisualApp:
 
     def apagar_digito(self):
         texto = self.visor.get()
-        if len(texto) > 1:
+        # Se for um número como "-5", ao apagar o dígito resta apenas "-", então reseta para "0"
+        if len(texto) > 1 and not (len(texto) == 2 and texto.startswith("-")):
             self.visor.delete(len(texto) - 1, tk.END)
         else:
             self.visor.delete(0, tk.END)
@@ -268,7 +318,7 @@ class CalculadoraVisualApp:
     def inverter_sinal(self):
         try:
             val = float(self.visor.get()) * -1
-            texto = str(int(val)) if val.is_integer() else str(val)
+            texto = self.formatar_numero(val)
             self.visor.delete(0, tk.END)
             self.visor.insert(0, texto)
         except ValueError:
