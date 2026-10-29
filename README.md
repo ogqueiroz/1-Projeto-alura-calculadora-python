@@ -12,9 +12,6 @@
 https://1-projeto-alura-calculadora-python.vercel.app/ <-- [Abra para testar a calculadora]
 
 <img width="1320" height="719" alt="Captura de tela 2026-10-28 212359" src="https://github.com/user-attachments/assets/ad41e551-c165-404c-bef2-7544731b8cda" />
-<img width="1302" height="977" alt="Captura de tela 2026-10-28 212442" src="https://github.com/user-attachments/assets/7629cd99-fb5e-430f-b5b4-b8965a42ea40" />
-<img width="1313" height="474" alt="Captura de tela 2026-10-28 212517" src="https://github.com/user-attachments/assets/887239f0-2e08-4968-b7dc-572c7b7c575a" />
-
 
 
 
