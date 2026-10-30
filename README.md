@@ -2,7 +2,7 @@
 
 <p align="center">
   <img src="https://img.shields.io/badge/Python-3.12-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python 3.12" />
-  <img src="https://img.shields.io/badge/Imersão-Alura%20com%20IA-0070f3?style=for-the-badge&logo=google-gemini&logoColor=white" alt="Alura" />
+  <img src="https://img.shields.io/badge/IMERS%C3%83O-ALURA%20%26%20GOOGLE%20COM%20IA-0070F3?style=for-the-badge&logo=google&logoColor=white&labelColor=555555" alt="Imersão Alura & Google com IA" />
   <img src="https://img.shields.io/badge/Deploy-Vercel-black?style=for-the-badge&logo=vercel&logoColor=white" alt="Vercel" />
   <img src="https://img.shields.io/badge/Licen%C3%A7a-MIT-green?style=for-the-badge" alt="MIT License" />
 </p>
