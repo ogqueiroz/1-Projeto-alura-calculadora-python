@@ -82,3 +82,7 @@ npm run calc
 ├── README.md                    # 📖 Documentação do projeto
 ├── .gitignore                   # 🚫 Arquivos ignorados pelo Git
 └── LICENSE                      # 📜 Licença de código aberto MIT
+```
+<p align="center">
+  Desenvolvido com dedicação durante a <b>Imersão Alura & Google com IA</b>.
+</p>
